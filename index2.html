@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>海南东郊椰萃贸易有限公司</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f7f6f2;
+      --surface: #ffffff;
+      --border: #e5e3dc;
+      --text-primary: #2a2926;
+      --text-secondary: #7c7a72;
+      --accent: #8fa98f;
+      --accent-light: #eaf0ea;
+      --accent-border: #c8d8c8;
+      --tag-bg: #f0ede6;
+      --nav-h: 64px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text-primary);
+      font-family: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+      line-height: 1.75;
+    }
+
+    /* ── 导航 ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      height: var(--nav-h);
+      background: rgba(247,246,242,0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5vw;
+    }
+    .nav-brand { display: flex; align-items: center; gap: 0.6rem; }
+    .nav-logo-icon {
+      width: 32px; height: 32px; border-radius: 8px;
+      background: var(--accent); display: flex; align-items: center;
+      justify-content: center; font-size: 1rem; color: #fff;
+    }
+    .nav-brand span { font-size: 0.95rem; font-weight: 600; letter-spacing: 0.03em; }
+    .nav-links { display: flex; gap: 2.5rem; }
+    .nav-links a {
+      font-size: 0.875rem; color: var(--text-secondary);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text-primary); }
+
+    /* ── 通用 ── */
+    section { padding: 80px 5vw; }
+    .section-label {
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+    .section-title {
+      font-size: 1.75rem; font-weight: 700;
+      color: var(--text-primary); margin-bottom: 1rem;
+    }
+    .section-desc {
+      font-size: 0.95rem; color: var(--text-secondary);
+      max-width: 560px; margin-bottom: 2.5rem;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+    }
+
+    /* ── Hero ── */
+    #hero {
+      min-height: 100vh;
+      padding-top: calc(var(--nav-h) + 80px);
+      display: flex; align-items: center;
+      background: linear-gradient(160deg, #f7f6f2 60%, #eaf0ea 100%);
+    }
+    .hero-inner { max-width: 1100px; margin: 0 auto; width: 100%; }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-size: 0.8rem; color: var(--accent);
+      background: var(--accent-light); border: 1px solid var(--accent-border);
+      border-radius: 20px; padding: 0.25rem 0.9rem; margin-bottom: 1.5rem;
+    }
+    .hero-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.35} }
+    .hero-inner h1 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 800; line-height: 1.25;
+      letter-spacing: 0.02em; margin-bottom: 1.25rem;
+    }
+    .hero-inner h1 em { font-style: normal; color: var(--accent); }
+    .hero-inner p {
+      font-size: 1.05rem; color: var(--text-secondary);
+      max-width: 520px; margin-bottom: 2.5rem;
+    }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary {
+      padding: 0.7rem 1.8rem; border-radius: 10px;
+      background: var(--accent); color: #fff;
+      font-size: 0.9rem; font-weight: 600;
+      border: none; cursor: pointer; text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.85; }
+    .btn-outline {
+      padding: 0.7rem 1.8rem; border-radius: 10px;
+      background: transparent; color: var(--text-primary);
+      font-size: 0.9rem; font-weight: 600;
+      border: 1px solid var(--border); cursor: pointer; text-decoration: none;
+      transition: border-color 0.2s;
+    }
+    .btn-outline:hover { border-color: var(--accent); }
+    .hero-stats {
+      display: flex; gap: 3rem; margin-top: 4rem;
+      padding-top: 2rem; border-top: 1px solid var(--border);
+    }
+    .stat-num { font-size: 1.6rem; font-weight: 700; color: var(--text-primary); }
+    .stat-label { font-size: 0.8rem; color: var(--text-secondary); margin-top: 0.1rem; }
+
+    /* ── 公司简介 ── */
+    #about { background: var(--surface); }
+    .about-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .about-img {
+      aspect-ratio: 4/3; border-radius: 16px;
+      background: var(--tag-bg); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.85rem; color: var(--text-secondary); text-align: center;
+    }
+    .about-points { display: flex; flex-direction: column; gap: 1rem; margin-top: 1.5rem; }
+    .about-point {
+      display: flex; gap: 0.75rem; align-items: flex-start;
+      padding: 1rem 1.25rem; border-radius: 12px;
+      background: var(--bg); border: 1px solid var(--border);
+    }
+    .point-icon {
+      width: 36px; height: 36px; border-radius: 9px;
+      background: var(--accent-light); border: 1px solid var(--accent-border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0;
+    }
+    .point-title { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.15rem; }
+    .point-desc { font-size: 0.82rem; color: var(--text-secondary); }
+
+    /* ── 公司环境 ── */
+    #env { max-width: 1100px; margin: 0 auto; }
+    .env-wrap { max-width: 1100px; margin: 0 auto; }
+    .env-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: auto auto;
+      gap: 1rem;
+    }
+    .env-item {
+      border-radius: 14px; background: var(--tag-bg);
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.82rem; color: var(--text-secondary); text-align: center;
+      overflow: hidden; position: relative;
+    }
+    .env-item.large { grid-column: span 2; aspect-ratio: 16/7; }
+    .env-item.small { aspect-ratio: 4/3; }
+    .env-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .env-caption {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 0.5rem 0.75rem;
+      background: linear-gradient(transparent, rgba(0,0,0,0.25));
+      font-size: 0.78rem; color: rgba(255,255,255,0.9);
+    }
+
+    /* ── 定位地图 ── */
+    #location { background: var(--surface); }
+    .location-inner { max-width: 1100px; margin: 0 auto; }
+    .map-placeholder {
+      width: 100%; aspect-ratio: 21/7; border-radius: 16px;
+      background: var(--tag-bg); border: 1px solid var(--border);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 0.5rem; color: var(--text-secondary); font-size: 0.9rem;
+    }
+    .map-icon { font-size: 2rem; }
+    .location-info {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1rem; margin-top: 1.5rem;
+    }
+    .loc-card {
+      padding: 1.25rem 1.5rem; border-radius: 12px;
+      background: var(--bg); border: 1px solid var(--border);
+    }
+    .loc-card-label { font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 0.3rem; }
+    .loc-card-val { font-size: 0.92rem; font-weight: 600; }
+
+    /* ── 产品列表 ── */
+    #products { max-width: 1100px; margin: 0 auto; }
+    .products-wrap { max-width: 1100px; margin: 0 auto; }
+    .brand-section { margin-bottom: 2.5rem; }
+    .brand-name {
+      font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em;
+      color: var(--text-secondary); text-transform: uppercase;
+      margin-bottom: 0.75rem; padding-left: 0.25rem;
+    }
+    .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 0.75rem; }
+    .product-card {
+      padding: 1rem 1.1rem; border-radius: 12px;
+      background: var(--surface); border: 1px solid var(--border);
+      transition: border-color 0.2s, transform 0.2s;
+      cursor: default;
+    }
+    .product-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .product-img {
+      width: 100%; aspect-ratio: 1; border-radius: 8px;
+      background: var(--tag-bg); margin-bottom: 0.6rem;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+    }
+    .product-name { font-size: 0.875rem; font-weight: 600; margin-bottom: 0.2rem; }
+    .product-tag {
+      display: inline-block; font-size: 0.72rem;
+      color: var(--accent); background: var(--accent-light);
+      border-radius: 6px; padding: 0.1rem 0.5rem;
+    }
+
+    /* ── 联系方式 ── */
+    #contact { background: var(--surface); }
+    .contact-inner { max-width: 1100px; margin: 0 auto; }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+    .qr-row { display: flex; gap: 2rem; flex-wrap: wrap; }
+    .qr-block { display: flex; flex-direction: column; align-items: center; gap: 0.6rem; }
+    .qr-box {
+      width: 130px; height: 130px; border-radius: 14px;
+      background: var(--tag-bg); border: 1px dashed var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.78rem; color: var(--text-secondary); text-align: center; line-height: 1.5;
+    }
+    .qr-label { font-size: 0.82rem; color: var(--text-secondary); }
+    .contact-list { display: flex; flex-direction: column; gap: 1rem; margin-top: 0.5rem; }
+    .contact-item {
+      display: flex; align-items: center; gap: 0.75rem;
+      padding: 0.9rem 1.1rem; border-radius: 12px;
+      background: var(--bg); border: 1px solid var(--border);
+    }
+    .c-icon {
+      width: 36px; height: 36px; border-radius: 9px;
+      background: var(--accent-light); border: 1px solid var(--accent-border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0;
+    }
+    .c-label { font-size: 0.75rem; color: var(--text-secondary); }
+    .c-val { font-size: 0.9rem; font-weight: 500; }
+
+    /* ── 页脚 ── */
+    footer {
+      text-align: center; padding: 2rem 5vw;
+      font-size: 0.8rem; color: var(--text-secondary);
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── 响应式 ── */
+    @media (max-width: 768px) {
+      .about-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .env-grid { grid-template-columns: 1fr 1fr; }
+      .env-item.large { grid-column: span 2; }
+      .location-info { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .hero-stats { gap: 1.5rem; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- 导航 -->
+<nav>
+  <div class="nav-brand">
+    <div class="nav-logo-icon">椰</div>
+    <span>海南东郊椰萃贸易</span>
+  </div>
+  <div class="nav-links">
+    <a href="#about">公司简介</a>
+    <a href="#env">公司环境</a>
+    <a href="#location">公司位置</a>
+    <a href="#products">产品列表</a>
+    <a href="#contact">联系我们</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-tag"><span class="hero-dot"></span>正品授权 · 专业医美供应商</div>
+    <h1>海南东郊<em>椰萃</em>贸易<br/>有限公司</h1>
+    <p>专注医美水光产品供应，汇聚伊肤泉、英诺、美祺润等国内外优质品牌，为医美机构提供正品保障与专业服务。</p>
+    <div class="hero-btns">
+      <a href="#products" class="btn-primary">查看产品</a>
+      <a href="#contact" class="btn-outline">联系我们</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="stat-num">37+</div><div class="stat-label">产品 SKU</div></div>
+      <div><div class="stat-num">10+</div><div class="stat-label">合作品牌</div></div>
+      <div><div class="stat-num">100%</div><div class="stat-label">正品备案</div></div>
+      <div><div class="stat-num">海南</div><div class="stat-label">总部所在地</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 公司简介 -->
+<section id="about">
+  <div class="about-inner">
+    <div>
+      <div class="section-label">About Us</div>
+      <h2 class="section-title">关于我们</h2>
+      <p class="section-desc">海南东郊椰萃贸易有限公司成立于海南，专注于医美水光类产品的代理与销售，致力于为全国医美机构提供安全、有效、正规备案的优质产品。</p>
+      <div class="about-points">
+        <div class="about-point">
+          <div class="point-icon">✅</div>
+          <div>
+            <div class="point-title">正品授权保障</div>
+            <div class="point-desc">所有产品均持有国家药监局备案资质，妆字号、械字号齐全，来源可溯。</div>
+          </div>
+        </div>
+        <div class="about-point">
+          <div class="point-icon">🌿</div>
+          <div>
+            <div class="point-title">多品牌矩阵</div>
+            <div class="point-desc">覆盖丝丽、菲洛嘉、英诺、伊肤泉、欧赛斯等 10+ 国内外知名品牌。</div>
+          </div>
+        </div>
+        <div class="about-point">
+          <div class="point-icon">🚚</div>
+          <div>
+            <div class="point-title">专业配送服务</div>
+            <div class="point-desc">冷链仓储，全国配送，确保产品在最佳状态送达合作机构。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="about-img">公司形象图<br/>（替换为实际图片）</div>
+  </div>
+</section>
+
+<!-- 公司环境 -->
+<section id="env" style="background: var(--bg);">
+  <div style="max-width:1100px; margin:0 auto;">
+    <div class="section-label">Environment</div>
+    <h2 class="section-title">公司环境</h2>
+    <p class="section-desc">专业的仓储与办公环境，为产品品质与服务效率提供有力保障。</p>
+    <div class="env-grid">
+      <div class="env-item large">
+        <span>仓储中心全景图<br/>（替换为实际图片）</span>
+      </div>
+      <div class="env-item small">
+        <span>办公区域<br/>（替换图片）</span>
+      </div>
+      <div class="env-item small">
+        <span>产品展示区<br/>（替换图片）</span>
+      </div>
+      <div class="env-item small">
+        <span>冷链仓储<br/>（替换图片）</span>
+      </div>
+      <div class="env-item small">
+        <span>质检区域<br/>（替换图片）</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 公司定位 -->
+<section id="location">
+  <div class="location-inner">
+    <div class="section-label">Location</div>
+    <h2 class="section-title">公司位置</h2>
+    <p class="section-desc">位于海南省文昌市东郊镇，交通便利，辐射全国。</p>
+    <div class="map-placeholder">
+      <div class="map-icon">📍</div>
+      <div>地图嵌入区域</div>
+      <div style="font-size:0.8rem;">可嵌入高德/百度地图 iframe，或替换为实际地图截图</div>
+    </div>
+    <div class="location-info">
+      <div class="loc-card">
+        <div class="loc-card-label">公司地址</div>
+        <div class="loc-card-val">海南省文昌市东郊镇</div>
+      </div>
+      <div class="loc-card">
+        <div class="loc-card-label">营业时间</div>
+        <div class="loc-card-val">周一至周六 09:00 – 18:00</div>
+      </div>
+      <div class="loc-card">
+        <div class="loc-card-label">服务范围</div>
+        <div class="loc-card-val">全国医美机构配送</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 产品列表 -->
+<section id="products" style="background: var(--bg);">
+  <div style="max-width:1100px; margin:0 auto;">
+    <div class="section-label">Products</div>
+    <h2 class="section-title">产品列表</h2>
+    <p class="section-desc">全系列正品备案水光产品，覆盖补水、美白、祛痘、抗衰等多种功效需求。</p>
+
+    <div class="brand-section">
+      <div class="brand-name">丝丽系列</div>
+      <div class="product-grid">
+        <div class="product-card"><div class="product-img">💧</div><div class="product-name">丝丽 516</div><span class="product-tag">妆字号</span></div>
+        <div class="product-card"><div class="product-img">💧</div><div class="product-name">丝丽 532</div><span class="product-tag">妆字号</span></div>
+        <div class="product-card"><div class="product-img">💧</div><div class="product-name">丝丽 640</div><span class="product-tag">妆字号</span></div>
+        <div class="product-card"><div class="product-img">💧</div><div class="product-name">丝丽 715</div><span class="product-tag">妆字号</span></div>
+      </div>
+    </div>
+
+    <div class="brand-section">
+      <div class="brand-name">英诺 · 伊肤泉 · 菲洛嘉</div>
+      <div class="product-grid">
+        <div class="product-card"><div class="product-img">✨</div><div class="product-name">英诺</div><span class="product-tag">妆字号</span></div>
+        <div class="product-card"><div class="product-img">✨</div><div class="product-name">伊肤泉祛痘</div><span class="product-tag">妆字号</span></div>
+        <div class="product-card"><div class="product-img">✨</div><div class="product-name">菲洛嘉 135</div><span class="product-tag">妆字号</span></div>
+        <div class="product-card"><div class="product-img">✨</div><div class="product-name">氐殊 i</div><span class="product-tag">妆+械</span></div>
+      </div>
+    </div>
+
+    <div class="brand-section">
+      <div class="brand-name">美祺润系列</div>
+      <div class="product-grid">
+        <div class="product-card"><div class="product-img">🌿</div><div class="product-name">美祺润祛痘</div><span class="product-tag">妆字号</span></div>
+        <div class="product-card"><div class="product-img">🌿</div><div class="product-name">美祺润 360</div><span class="product-tag">械字号</span></div>
+        <div class="product-card"><div class="product-img">🌿</div><div class="product-name">美祺润三文鱼</div><span class="product-tag">械字号</span></div>
+      </div>
+    </div>
+
+    <div class="brand-section">
+      <div class="brand-name">丽珠兰系列</div>
+      <div class="product-grid">
+        <div class="product-card"><div class="product-img">🔬</div><div class="product-name">丽珠兰白盒</div><span class="product-tag">妆字号</span></div>
+        <div class="product-card"><div class="product-img">🔬</div><div class="product-name">丽珠兰黑盒</div><span class="product-tag">妆字号</span></div>
+        <div class="product-card"><div class="product-img">🔬</div><div class="product-name">丽珠兰白瓷</div><span class="product-tag">妆字号</span></div>
+        <div class="product-card"><div class="product-img">🔬</div><div class="product-name">丽珠兰 3+3</div><span class="product-tag">妆字号</span></div>
+        <div class="product-card"><div class="product-img">🔬</div><div class="product-name">丽珠兰三文鱼</div><span class="product-tag">妆字号</span></div>
+      </div>
+    </div>
+
+    <div class="brand-section">
+      <div class="brand-name">欧赛斯系列</div>
+      <div class="product-grid">
+        <div class="product-card"><div class="product-img">🧬</div><div class="product-name">欧赛斯紫盒</div><span class="product-tag">妆字号</span></div>
+        <div class="product-card"><div class="product-img">🧬</div><div class="product-name">欧赛斯眼周肽</div><span class="product-tag">妆字号</span></div>
+        <div class="product-card"><div class="product-img">🧬</div><div class="product-name">欧赛斯亮白肽</div><span class="product-tag">妆字号</span></div>
+        <div class="product-card"><div class="product-img">🧬</div><div class="product-name">欧赛斯童颜肽</div><span class="product-tag">妆字号</span></div>
+        <div class="product-card"><div class="product-img">🧬</div><div class="product-name">欧赛斯眼多酚</div><span class="product-tag">妆字号</span></div>
+      </div>
+    </div>
+
+    <div class="brand-section">
+      <div class="brand-name">其他品牌</div>
+      <div class="product-grid">
+        <div class="product-card"><div class="product-img">🌸</div><div class="product-name">稀洛因</div><span class="product-tag">妆字号</span></div>
+        <div class="product-card"><div class="product-img">🌸</div><div class="product-name">薇旖美</div><span class="product-tag">广审</span></div>
+        <div class="product-card"><div class="product-img">🌸</div><div class="product-name">嗨体</div><span class="product-tag">广审</span></div>
+        <div class="product-card"><div class="product-img">🌸</div><div class="product-name">普丽兰修复</div><span class="product-tag">妆字号</span></div>
+        <div class="product-card"><div class="product-img">🌸</div><div class="product-name">润致娃娃</div><span class="product-tag">广审</span></div>
+        <div class="product-card"><div class="product-img">🌸</div><div class="product-name">瑞恩诗皓白</div><span class="product-tag">妆字号</span></div>
+        <div class="product-card"><div class="product-img">🌸</div><div class="product-name">瑞恩诗活肌</div><span class="product-tag">妆字号</span></div>
+        <div class="product-card"><div class="product-img">🌸</div><div class="product-name">杏枝山速白</div><span class="product-tag">妆字号</span></div>
+        <div class="product-card"><div class="product-img">🌸</div><div class="product-name">杏枝山祛斑</div><span class="product-tag">妆字号</span></div>
+        <div class="product-card"><div class="product-img">🌸</div><div class="product-name">杜莎之谜黑</div><span class="product-tag">妆字号</span></div>
+        <div class="product-card"><div class="product-img">🌸</div><div class="product-name">杜莎之谜红</div><span class="product-tag">妆字号</span></div>
+        <div class="product-card"><div class="product-img">🌸</div><div class="product-name">杜莎之谜绿</div><span class="product-tag">妆字号</span></div>
+        <div class="product-card"><div class="product-img">🌸</div><div class="product-name">达美伽祛痘</div><span class="product-tag">妆字号</span></div>
+        <div class="product-card"><div class="product-img">🌸</div><div class="product-name">冭活泡泡</div><span class="product-tag">广审</span></div>
+        <div class="product-card"><div class="product-img">🌸</div><div class="product-name">COCOFULL柔滑</div><span class="product-tag">妆字号</span></div>
+        <div class="product-card"><div class="product-img">🌸</div><div class="product-name">COCOFULL净颜</div><span class="product-tag">妆字号</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 联系方式 -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="section-label">Contact</div>
+    <h2 class="section-title">联系我们</h2>
+    <p class="section-desc">欢迎医美机构、代理商洽谈合作，我们将为您提供专业的产品咨询与报价服务。</p>
+    <div class="contact-grid">
+      <div>
+        <div class="qr-row">
+          <div class="qr-block">
+            <div class="qr-box">微信<br/>二维码<br/>替换此处</div>
+            <span class="qr-label">微信咨询</span>
+          </div>
+          <div class="qr-block">
+            <div class="qr-box">企业微信<br/>二维码<br/>替换此处</div>
+            <span class="qr-label">企业微信</span>
+          </div>
+          <div class="qr-block">
+            <div class="qr-box">小红书<br/>二维码<br/>替换此处</div>
+            <span class="qr-label">小红书</span>
+          </div>
+        </div>
+      </div>
+      <div class="contact-list">
+        <div class="contact-item">
+          <div class="c-icon">📞</div>
+          <div><div class="c-label">联系电话</div><div class="c-val">+86 138 0000 0000</div></div>
+        </div>
+        <div class="contact-item">
+          <div class="c-icon">✉️</div>
+          <div><div class="c-label">电子邮箱</div><div class="c-val">contact@yecui.com</div></div>
+        </div>
+        <div class="contact-item">
+          <div class="c-icon">📍</div>
+          <div><div class="c-label">公司地址</div><div class="c-val">海南省文昌市东郊镇</div></div>
+        </div>
+        <div class="contact-item">
+          <div class="c-icon">🕘</div>
+          <div><div class="c-label">营业时间</div><div class="c-val">周一至周六 09:00 – 18:00</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 海南东郊椰萃贸易有限公司 · 专注医美水光产品供应
+</footer>
+
+</body>
+</html>
